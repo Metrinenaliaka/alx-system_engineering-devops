@@ -10,7 +10,7 @@ then
 	else
 		echo "school file is not empty"
 	fi
-	if [ -f $finename ]
+	if [ -f $filename ]
 	then
 		echo "school is a regular file"
 	fi
