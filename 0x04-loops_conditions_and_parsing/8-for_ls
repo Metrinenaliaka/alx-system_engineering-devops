@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#prints content of current working directory
+
+for i in `ls`;
+do
+	echo "$i"
+done
