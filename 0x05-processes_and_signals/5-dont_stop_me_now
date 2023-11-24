@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#terminates a process
+p_name='4-to_infinity_and_beyond'
+pid=$(pgrep -f "$p_name")
+if [ -n "$pid" ]
+then
+	kill "$pid"
+fi
