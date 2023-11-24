@@ -1,24 +1,10 @@
 #!/usr/bin/env bash
-#creates a file, displays stuff infinitely
-#traps some processes
-#deletes upon exit
-sudo touch /var/run/holbertonscript.pid
-echo $$ >> sudo /var/run/holbertonscript.pid
-trap "exit_sigterm" SIGTERM
-trap 'echo "Y U no love me?!"' SIGINT
-trap "exit_sigquit" SIGQUIT
-exit_sigterm()
-{
-    echo "I hate the kill command"
-    sudo rm /var/run/holbertonscript.pid
-    exit 1
-}
-exit_sigquit()
-{
-    sudo rm /var/run/holbertonscript.pid
-    exit 1
-}
-while ((1))
+# Prints "I am invicible!!!" when receiving a SIGTERM signal
+echo "$$" > /var/run/holbertonscript.pid
+trap 'echo "I hate the kill command"; rm /var/run/holbertonscript.pid; exit' 15 #SIGQUIT
+trap 'rm /var/run/holbertonscript.pid; exit' 3 #SIGQUIT
+trap 'Y U no love me?!' 2 #SIGINT
+while true
 do
     echo "To infinity and beyond"
     sleep 2
