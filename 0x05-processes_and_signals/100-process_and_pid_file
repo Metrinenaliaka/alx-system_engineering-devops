@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Prints "I am invicible!!!" when receiving a SIGTERM signal
 echo "$$" > /var/run/holbertonscript.pid
-trap 'echo "I hate the kill command"; rm -rf /var/run/holbertonscript.pid; exit' 15 #SIGQUIT
-trap 'rm -rf /var/run/holbertonscript.pid; exit' 3 #SIGQUIT
+trap 'echo "I hate the kill command"; rm -rf /var/run/myscript.pid; exit' 15 #SIGQUIT
+trap 'rm -rf /var/run/myscript.pid; exit' 3 #SIGQUIT
 trap 'Y U no love me?!' 2 #SIGINT
 while true
 do
