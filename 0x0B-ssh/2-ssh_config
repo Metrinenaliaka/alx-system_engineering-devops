@@ -1,0 +1,7 @@
+# configure it to our needs so that you can
+# connect to a server without typing a password
+
+ForwardAgent yes
+RSAAuthentication no
+PasswordAuthentication no
+IdentityFile ~/.ssh/school
