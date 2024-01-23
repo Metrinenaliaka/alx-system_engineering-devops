@@ -1,1 +1,1 @@
-A project on how to set up a server
+ A project on web server
