@@ -6,7 +6,7 @@ FILE=/etc/nginx/sites-available/default
 REDIRECT_STRING="location /redirect_me {\n return 301 http://www.google.com;\n}\n"
 echo "Original file contents:"
 cat $FILE
-sudo sed -i "/server {/a\\$REDIRECT_STRING" $FILE
+sudo sed -i "57i "$REDIRECT_STRING" $FILE
 echo "Modified file contents:"
 cat $FILE
 sudo service nginx restart
