@@ -5,8 +5,11 @@ sudo apt-get install --no-install-recommends software-properties-common
 sudo add-apt-repository ppa:vbernat/haproxy-2.8
 sudo apt-get install haproxy=2.8.\*
 
-sudo hostnamectl set-hostname 404752-web-01
-sudo hostnamectl set-hostname 404752-web-02
+sudo hostname 404752-web-01
+sudo nano /etc/hostname
+sudo hostname 404752-web-02
+sudo nano /etc/hostname
+
 FILE=/etc/haproxy/haproxy.cfg
 echo -e "frontend web-frontend
 \tbind *:80
