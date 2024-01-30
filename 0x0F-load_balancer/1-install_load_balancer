@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 #install haproxy and configure on system
-sudo apt-get update
+sudo apt-get -y update
 
-sudo apt-get install haproxy=2.8.\*
+sudo apt-get -y install haproxy
+sudo service haproxy start
+sudo service haproxy enable
 
 FILE=/etc/haproxy/haproxy.cfg
 echo -e "frontend web-frontend
@@ -15,7 +17,4 @@ backend web_backend
 \tserver 404752-web-01 100.25.2.92:80 check
 \tserver 404752-web-01 54.172.76.0:80 check" | sudo tee -a $FILE
 
-# enable haproxy to be started by init script
-echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
-sudo service haproxy enable
 sudo service haproxy restart

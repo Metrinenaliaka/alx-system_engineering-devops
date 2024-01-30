@@ -2,8 +2,7 @@
 # and add a custom HTTP header
 
 exec { 'update_system':
-        command => '/usr/bin/apt-get update',
-	provider => 'shell'
+	command => '/usr/bin/apt-get update',
 }
 
 package { 'nginx':
