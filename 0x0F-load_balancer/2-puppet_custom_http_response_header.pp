@@ -1,13 +1,13 @@
 # Setup New Ubuntu server with nginx
 # and add a custom HTTP header
 
-exec { 'update_store':
-	command => '/usr/bin/apt-get update',
-}
-
 package { 'nginx':
 	ensure  => 'installed',
 	require => Exec['update_store']
+}
+
+exec { 'update_store':
+        command => '/usr/bin/apt-get update',
 }
 
 file {'/var/www/html/index.html':
