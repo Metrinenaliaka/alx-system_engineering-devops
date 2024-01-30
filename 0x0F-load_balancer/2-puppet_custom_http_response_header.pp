@@ -1,32 +1,22 @@
-# Setup New Ubuntu server with nginx
-# and add a custom HTTP header
+#Puppet manifest that install nginx and adds a line to config 
 
 package { 'nginx':
-	ensure  => 'installed',
-	require => Exec['update_store']
+  ensure  => 'present',
+  require => Exec['update_apt_store'],
 }
 
-exec { 'update_store':
-        command => '/usr/bin/apt-get update',
+exec { 'update_apt_store':
+  command => '/usr/bin/apt-get update',
 }
 
-file {'/var/www/html/index.html':
-	content => 'Hello World!',
-	require => Service['nginx']
+file_line { 'http_header':
+  path    => '/etc/nginx/nginx.conf',
+  line    => "http {\n\tadd_header X-Served-By \"${hostname}\";",
+  match   => 'http {',
+  require => Package ['nginx'],
 }
 
-exec {'redirect_me':
-	command  => 'sed -i "24i\	rewrite ^/redirect_me https://th3-gr00t.tk/ permanent;" /etc/nginx/sites-available/default',
-	provider => 'shell'
-	require  => File['/var/www/html/index.html']
+exec { 'restart_nginx':
+  command => '/usr/sbin/service nginx restart',
+  require => File_line ['http_header']
 }
-
-exec {'HTTP header':
-	command  => 'sed -i "25i\	add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
-	provider => 'shell'
-	require  => Exec['redirect_me']
-}
-
-service {'nginx':
-	ensure  => running,
-	require => Package['nginx']
