@@ -21,12 +21,10 @@ port            = 3306
 datadir = /var/lib/mysql
 tmpdir          = /tmp
 symbolic-links=0
-lc-messages-dir           = /usr/share/mysql
-skip-external-locking
 #
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
-bind-address            = 127.0.0.1
+#bind-address            = 127.0.0.1
 #mysqlx-bind-address    = 127.0.0.1
 #
 # * Fine Tuning
@@ -76,7 +74,3 @@ max_binlog_size   = 100M
 binlog_do_db            = tyrell_corp
 relay-log       = /var/log/mysql/mysql-relay-bin.log
 # binlog_ignore_db      = include_database_name
-master-host = web-01
-master-user = replica_user
-master-password = matilda@29
-master-port = 3306
