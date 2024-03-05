@@ -24,5 +24,5 @@ def top_ten(subreddit):
             print(obj['data'].get('title'))
             i += 1
 
-    except:
+    except Exception as e:
         print('None')

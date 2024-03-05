@@ -18,5 +18,5 @@ def number_of_subscribers(subreddit):
         for k, v in sub.items():
             if k == 'subscribers':
                 return v
-    except:
+    except Exception as e:
         return 0
