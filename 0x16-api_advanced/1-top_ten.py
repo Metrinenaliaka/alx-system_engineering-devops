@@ -26,4 +26,3 @@ def top_ten(subreddit):
 
     except Exception as e:
         print('None')
-        
