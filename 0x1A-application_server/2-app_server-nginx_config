@@ -2,7 +2,7 @@ server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        server_name alxbnb.tech;
+        server_name _;
 
         root /var/www/html;
         index index.html;
@@ -13,11 +13,8 @@ server {
                 return 301 http://www.google.com;
         }
         location /airbnb-onepage/ {
-        proxy_pass http://localhost:5000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+         include proxy_params;
+         proxy_pass http://localhost:5000;
     }
 
 
